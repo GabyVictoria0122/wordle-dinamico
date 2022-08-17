@@ -53,14 +53,20 @@ const ouvinteDeTeclas = (event) => {
   }
 
   if (char == "ENTER") {
+    if (entrada.length == 5) {
+      validarEntrada();
+      linha += 1;
+    }
     // VALIDAR PALAVRA
-    validarEntrada();
-    linha += 1;
     return;
   }
 
-  entrada.push(char);
-  console.log(entrada.length, "coluna");
+  if (entrada.length >= 5) {
+    return null;
+  } else {
+    entrada.push(char);
+  }
+  console.log(entrada, "coluna");
   console.log(linha, "linha");
 
   exibeLetra(char);
@@ -81,9 +87,10 @@ function retiraLetra(letra) {
 }
 
 function validarEntrada() {
-  if (entrada.join("") == palavraDoDia.toUpperCase()) {
+  if ((entrada.length = 5 && entrada.join("") == palavraDoDia.toUpperCase())) {
     alert("correto");
   }
+  entrada.slice(entrada.length);
   console.log("validar se " + entrada.join("") + " é igual " + palavraDoDia);
 }
 
