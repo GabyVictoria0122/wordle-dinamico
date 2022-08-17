@@ -1,4 +1,4 @@
-# wordle-estatico
+# wordle-dinamico
 
 Um dos desafios proposto no programa BuserTech
 
