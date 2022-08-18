@@ -3,8 +3,8 @@ const palavraDoDia = "ARROZ";
 let linha = 1;
 let entrada = [];
 
-const ouvinteDeTeclas = (event) => {
-  let char = event.key.toUpperCase();
+const trataTecla = (tecla) => {
+  let char = tecla.toUpperCase();
   let alfabeto = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
     'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'ENTER', 'BACKSPACE'];
@@ -41,6 +41,11 @@ const ouvinteDeTeclas = (event) => {
   console.log(linha, "linha");
 
   exibeLetra(char);
+}
+
+
+const ouvinteDeTeclas = (event) => {
+  trataTecla(event.key)
 };
 
 
@@ -87,12 +92,6 @@ function validarEntrada() {
     //   el.classList.add("fullcorrect")
     // }
 
-    let elIdPai = `linha-tab${linha}`;
-    const elPai = document.getElementById(elIdPai);
-    console.log(linha)
-    if (entrada.join("").search(palavraDoDia)) {
-      elPai.classList.add("fullcorrect")
-    }
 
     // if () {
     el.classList.add("correct")
@@ -109,3 +108,13 @@ console.log("validar se " + entrada.join("") + " é igual " + palavraDoDia);
 
 //ouve quando o cliente aperta uma tecla
 document.body.addEventListener("keydown", ouvinteDeTeclas);
+document.querySelectorAll(".tecla").forEach((el) => {
+  el.addEventListener("click", function (el) {
+    let letra = el.srcElement.textContent
+    if (letra == '') {
+      letra = "BACKSPACE"
+    }
+    trataTecla(letra)
+
+  })
+})
