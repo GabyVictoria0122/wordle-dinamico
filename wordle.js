@@ -1,4 +1,4 @@
-const palavraDoDia = "arroz";
+const palavraDoDia = "ARROZ";
 
 let linha = 1;
 let entrada = [];
@@ -48,6 +48,7 @@ function exibeLetra(letra) {
   let elId = `l${linha}c${entrada.length}`;
   const el = document.getElementById(elId);
   el.textContent = letra;
+
 }
 
 function retiraLetra(letra) {
@@ -56,14 +57,55 @@ function retiraLetra(letra) {
   el.textContent = "";
   console.log(entrada.length, "coluna");
 }
-// el.classList.add('<nome da classe'>) adicionar classe
-// Digite el.classlist. para ver as demais propriedades 
+
 function validarEntrada() {
+  for (var i = 1; i <= 5; i++) {
+    let elId = `l${linha}c${i}`;
+    const el = document.getElementById(elId);
+    if (palavraDoDia[i - 1] == el.textContent) {
+      el.classList.add("fullcorrect")
+      console.log(entrada.indexOf(palavraDoDia[i]), 'posição')
+    }
+    if (palavraDoDia.includes(el.textContent)) {
+      el.classList.add("correct")
+      console.log(elId)
+      console.log(entrada.includes(palavraDoDia[i]))
+    }
+    else
+      el.classList.add("incorrect")
+
+
+    // RETORNA O INDICE DO VALOR(POSIÇÃO)
+  }
+
+
+
   if ((entrada.length = 5 && entrada.join("") == palavraDoDia.toUpperCase())) {
+    // let elId = `l${linha}c${entrada.length}`;
+    // const el = document.getElementById(elId);
+    // if (entrada.join("").search(palavraDoDia)) {
+    //   el.classList.add("fullcorrect")
+    // }
+
+    let elIdPai = `linha-tab${linha}`;
+    const elPai = document.getElementById(elIdPai);
+    console.log(linha)
+    if (entrada.join("").search(palavraDoDia)) {
+      elPai.classList.add("fullcorrect")
+    }
+
+    // if () {
+    el.classList.add("correct")
+    // }
+    el.classList.add("incorrect")
+
     alert("correto");
   }
-  entrada.slice(entrada.length);
-  console.log("validar se " + entrada.join("") + " é igual " + palavraDoDia);
 }
+//apagar itens da entrada
+entrada.slice(entrada.length);
+console.log("validar se " + entrada.join("") + " é igual " + palavraDoDia);
 
+
+//ouve quando o cliente aperta uma tecla
 document.body.addEventListener("keydown", ouvinteDeTeclas);
