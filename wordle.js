@@ -2,6 +2,8 @@ const palavraDoDia = "ARROZ";
 
 let linha = 1;
 let entrada = [];
+let acerto = false
+console.log(acerto)
 
 const trataTecla = (tecla) => {
   let char = tecla.toUpperCase();
@@ -17,17 +19,20 @@ const trataTecla = (tecla) => {
 
   // REMOVE LETRA
   if (char == "BACKSPACE") {
-    entrada.pop();
-    console.log(entrada);
-    retiraLetra();
-    return;
+    if (!acerto) {
+      entrada.pop();
+      retiraLetra();
+      return;
+    } else return null
   }
 
   // VALIDAR PALAVRA
   if (char == "ENTER") {
     if (entrada.length == 5) {
       validarEntrada();
-      linha += 1;
+      if (!acerto) {
+        linha += 1;
+      }
     }
     return;
   }
@@ -37,10 +42,9 @@ const trataTecla = (tecla) => {
   } else {
     entrada.push(char);
   }
-  console.log(entrada, "coluna");
-  console.log(linha, "linha");
-
-  exibeLetra(char);
+  if (!acerto) {
+    exibeLetra(char);
+  }
 }
 
 
@@ -56,11 +60,10 @@ function exibeLetra(letra) {
 
 }
 
-function retiraLetra(letra) {
+function retiraLetra() {
   let elId = `l${linha}c${entrada.length + 1}`;
   const el = document.getElementById(elId);
   el.textContent = "";
-  console.log(entrada.length, "coluna");
 }
 
 function validarEntrada() {
@@ -69,36 +72,20 @@ function validarEntrada() {
     const el = document.getElementById(elId);
     if (palavraDoDia[i - 1] == el.textContent) {
       el.classList.add("fullcorrect")
-      console.log(entrada.indexOf(palavraDoDia[i]), 'posição')
     }
     if (palavraDoDia.includes(el.textContent)) {
       el.classList.add("correct")
-      console.log(elId)
-      console.log(entrada.includes(palavraDoDia[i]))
     }
     else
       el.classList.add("incorrect")
-
-
-    // RETORNA O INDICE DO VALOR(POSIÇÃO)
   }
 
-
-
   if ((entrada.length = 5 && entrada.join("") == palavraDoDia.toUpperCase())) {
-    // let elId = `l${linha}c${entrada.length}`;
-    // const el = document.getElementById(elId);
-    // if (entrada.join("").search(palavraDoDia)) {
-    //   el.classList.add("fullcorrect")
-    // }
-
-
-    // if () {
-    el.classList.add("correct")
-    // }
-    el.classList.add("incorrect")
-
+    let elId = `l${linha}c${entrada.length + 1}`;
+    const el = document.getElementById(elId);
     alert("correto");
+    acerto = true
+    console.log(acerto)
   }
 }
 //apagar itens da entrada
