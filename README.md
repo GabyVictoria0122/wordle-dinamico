@@ -7,12 +7,12 @@ Um dos desafios proposto no programa BuserTech
 UPGRADES:
 
 - Local Storage
-- Teclado Colorido
+- ~Teclado Colorido~
 - Animações
   - Tecla gira
   - Acerto
-  - Palavra n está no dicionario
-  - Palavra n está na lista
+  - Palavra não está no dicionario
+  - Palavra não está na lista
 - ~Deixar Responsivo~
 
 Melhorias: - Dividir os problemas em pedaços menores - Nome das variaveis em ingles
