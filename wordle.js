@@ -179,6 +179,7 @@ document.querySelectorAll(".tecla").forEach((el) => {
   el.addEventListener("click", function (el) {
     let letra = el.srcElement.textContent
     if (letra == '⌫') {
+
       letra = "BACKSPACE"
     }
     trataTecla(letra)
