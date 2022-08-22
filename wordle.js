@@ -138,18 +138,25 @@ function validarPalavra() {
 
 
 function validarEntrada() {
-
+  debugger
   for (var i = 1; i <= 5; i++) {
     let elId = `l${linha}c${i}`;
     const el = document.getElementById(elId);
     if (palavraDoDia[i - 1] == el.textContent) {
+      teclaPinta = document.getElementById(el.textContent)
+      teclaPinta.classList.add("fullcorrect")
       el.classList.add("fullcorrect")
     }
     if (palavraDoDia.includes(el.textContent)) {
+      teclaPinta = document.getElementById(el.textContent)
+      teclaPinta.classList.add("correct")
       el.classList.add("correct")
     }
-    else
+    else {
+      teclaPinta = document.getElementById(el.textContent)
+      teclaPinta.classList.add("incorrect")
       el.classList.add("incorrect")
+    }
   }
 
 

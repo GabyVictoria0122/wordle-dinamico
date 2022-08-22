@@ -13,6 +13,6 @@ UPGRADES:
   - Acerto
   - Palavra n está no dicionario
   - Palavra n está na lista
-- Deixar Responsivo
+- ~Deixar Responsivo~
 
 Melhorias: - Dividir os problemas em pedaços menores - Nome das variaveis em ingles
