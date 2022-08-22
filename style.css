@@ -115,7 +115,20 @@ h1 {
   background-color: #dfdfdf;
   cursor: pointer;
 }
-
+.teclaes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 13px; */
+  margin: 0 6px 0 0;
+  min-width: 30px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.68em;
+  background-color: #dfdfdf;
+  cursor: pointer;
+}
 .tecla-del {
   min-width: 46px;
 }
