@@ -138,7 +138,7 @@ function validarPalavra() {
 
 
 function validarEntrada() {
-  debugger
+
   for (var i = 1; i <= 5; i++) {
     let elId = `l${linha}c${i}`;
     const el = document.getElementById(elId);
