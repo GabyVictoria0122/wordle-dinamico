@@ -6,7 +6,7 @@ palavrasValidasAcentuadas.forEach(function (element) {
 })
 const palavrasValidasU = palavrasValidas.toUpperCase
 palavraPorDia()
-var palavraDoDia
+var palavraDoDia = 'OSSOS'
 
 let linha = 1;
 let entrada = [];
@@ -43,7 +43,7 @@ function palavraPorDia() {
   let indice = listDate.indexOf(new Date().toLocaleDateString())
   console.log(indice)
   let dia = palavrasValidas[indice]
-  palavraDoDia = dia.toUpperCase()
+  // palavraDoDia = dia.toUpperCase()
 }
 
 const trataTecla = (tecla) => {
@@ -171,7 +171,7 @@ document.body.addEventListener("keydown", ouvinteDeTeclas);
 document.querySelectorAll(".tecla").forEach((el) => {
   el.addEventListener("click", function (el) {
     let letra = el.srcElement.textContent
-    if (letra == '') {
+    if (letra == '⌫') {
       letra = "BACKSPACE"
     }
     trataTecla(letra)
