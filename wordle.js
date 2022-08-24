@@ -168,8 +168,25 @@ function validarEntrada() {
   if ((entrada.length = 5 && entrada.join("") == palavraDoDia)) {
     let elId = `l${linha}c${entrada.length + 1}`;
     const el = document.getElementById(elId);
-    alert("correto");
+
+    // modal
+    var modal = document.getElementById("modelWin").style.display = 'flex'
+
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function () {
+      document.getElementById("modelWin").style.display = 'none'
+    }
+    window.onclick = function (event) {
+
+      if (event.target != modal) {
+
+        document.getElementById("modelWin").style.display = 'none'
+      }
+    }
+
+    startConfetti();
     acerto = true
+
     console.log(acerto)
   }
   //apagar itens da entrada

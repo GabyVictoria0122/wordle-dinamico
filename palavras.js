@@ -81,4 +81,4 @@ const palavrasValidasAcentuadas = ['sagaz', 'amago', 'negro', 'êxito', 'mexer',
     'trair', 'skate', 'pagar', 'roubo', 'pazes', 'dique', 'xampu', 'tacho', 'podre', 'disso', 'surra', 'tíbio',
     'filme', 'abono', 'caibo', 'cisco', 'farei', 'dobro', 'jeová', 'domar', 'digna', 'couve', 'quais', 'posta',
     'régia', 'notar', 'bruxa', 'barra', 'regem', 'volto', 'toque', 'buril', 'preta', 'mesma', 'estas', 'nervo',
-    'mesmo']
+    'mesmo', 'buser', 'preta']

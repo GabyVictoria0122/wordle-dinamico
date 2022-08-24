@@ -17,8 +17,17 @@
       <h1>Wordle</h1>
     </nav>
 
+    <!-- TOAST FAIL -->
     <div class="toast" id="toast">
       <strong>Não está na lista de palavras</strong>
+    </div>
+
+    <!--MODAL WIN -->
+    <div id="modelWin" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <strong>Você acertou!</strong>
+      </div>
     </div>
 
     <div class="tabuleiro">
@@ -104,6 +113,7 @@
     </div>
   </div>
   <script src="palavras.js"></script>
+  <script src="./confetti.js"></script>
   <script src="./wordle.js"></script>
 </body>
 
