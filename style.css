@@ -254,7 +254,7 @@ h1 {
   align-items: center;
   font-size: 50px;
   background-color: #fefefe;
-  margin: 34% auto 51% auto; /* 15% from the top and centered */
+  margin: 15% auto 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 83%; /* Could be more or less, depending on screen size */
