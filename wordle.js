@@ -32,7 +32,7 @@ function palavraPorDia() {
     };
   })();
 
-  d1 = new Date('2022-08-19');
+  d1 = new Date('2022-08-17');
   d2 = new Date('2025-11-19');
   dates = dateIntervalGenerator.generateIn(d1, d2);
   //return 2022/08/19
