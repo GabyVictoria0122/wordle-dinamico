@@ -132,7 +132,12 @@ function validarPalavra() {
         break
       }
     }
-  } if (!acerto) alert("Palavra Inválida")
+  } if (!acerto) setTimeout(function () {
+    document.getElementById('toast').style.display = 'flex'
+  })
+  setTimeout(function () {
+    document.getElementById('toast').style.display = 'none'
+  }, 3000)
   return false
 }
 
@@ -186,3 +191,4 @@ document.querySelectorAll(".tecla").forEach((el) => {
 
   })
 })
+
