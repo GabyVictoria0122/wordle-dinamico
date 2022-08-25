@@ -69,9 +69,10 @@ const trataTecla = (tecla) => {
 
   // VALIDAR PALAVRA
   if (char == "ENTER") {
-    //SALVANDO
-    localStorage.setItem('entrada', JSON.stringify([entrada.join('')]))
     if (validarPalavra()) {
+      let antigaEntrada = localStorage.getItem('entrada')
+      if (antigaEntrada === null) antigaEntrada = "";
+      localStorage.setItem('entrada', antigaEntrada + entrada.join(''))
       validarEntrada();
       if (!acerto) {
         linha += 1;
@@ -194,6 +195,20 @@ function validarEntrada() {
 }
 console.log("validar se " + entrada.join("") + " é igual " + palavraDoDia);
 
+function exibeLocalStorage() {
+  var salvo = localStorage.getItem('entrada')
+  localStorage.removeItem('entrada')
+  let counter = 0
+  for (let letra of salvo) {
+    trataTecla(letra)
+    counter += 1
+    if (counter % 5 == 0 && counter != 0) {
+      trataTecla("ENTER")
+    }
+    console.log(letra)
+  }
+
+}
 
 //ouve quando o cliente aperta uma tecla
 document.body.addEventListener("keydown", ouvinteDeTeclas);
@@ -208,4 +223,9 @@ document.querySelectorAll(".tecla").forEach((el) => {
 
   })
 })
+if (localStorage.getItem('entrada') !== null) {
+  exibeLocalStorage()
+}
+
+
 

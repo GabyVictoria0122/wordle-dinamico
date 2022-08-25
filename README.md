@@ -10,9 +10,8 @@ UPGRADES:
 - ~Teclado Colorido~
 - Animações
   - Tecla gira
-  - Acerto
-  - Palavra não está no dicionario
-  - Palavra não está na lista
+  - ~Acerto~
+  - ~Palavra não está na lista~
 - ~Deixar Responsivo~
-
-Melhorias: - Dividir os problemas em pedaços menores - Nome das variaveis em ingles
+- Arrumar bug de invalidar campos vazios
+  Melhorias: - Dividir os problemas em pedaços menores - Nome das variaveis em ingles
