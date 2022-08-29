@@ -1,21 +1,21 @@
-let salvarStorage = ''
+// Tirando acento das palavras
 let palavrasValidas = []
-// salvo()
-palavrasValidasAcentuadas.forEach(function (element) {
-  palavrasValidas.push(element.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
-})
-const palavrasValidasU = palavrasValidas.toUpperCase
-palavraPorDia()
-var palavraDoDia
-
 let linha = 1;
 let entrada = [];
 let acerto = false
-aceitaPalavra = false
-console.log(acerto)
+let aceitaPalavra = false
+let palavraDoDia
+let listDate = []
+var indice
+var indiceHoje
+const palavrasValidasU = palavrasValidas.toUpperCase
+
+
+palavrasValidasAcentuadas.forEach(function (element) {
+  palavrasValidas.push(element.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
+})
 
 function palavraPorDia() {
-  listDate = []
   //gerador da lista de datas
   const dateIntervalGenerator = (() => {
     const _generateInterval = (startDate, endDate) => {
@@ -32,19 +32,19 @@ function palavraPorDia() {
     };
   })();
 
-  d1 = new Date('2022-08-17');
-  d2 = new Date('2025-11-19');
-  dates = dateIntervalGenerator.generateIn(d1, d2);
+  dates = dateIntervalGenerator.generateIn(new Date('2022-08-18'), new Date('2025-11-19'));
   //return 2022/08/19
   dates.forEach(element => {
     listDate.push(element.toLocaleDateString())
   });
-  //indice lista de datas igual ao indice de 
-  let indice = listDate.indexOf(new Date().toLocaleDateString())
+
+  //indice lista de datas igual ao indice de palavras
+  indice = listDate.indexOf(new Date().toLocaleDateString())
   console.log(indice)
   let dia = palavrasValidas[indice]
   palavraDoDia = dia.toUpperCase()
 }
+palavraPorDia()
 
 const trataTecla = (tecla) => {
   let char = tecla.toUpperCase();
@@ -52,85 +52,65 @@ const trataTecla = (tecla) => {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
     'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'ENTER', 'BACKSPACE'];
 
-  // INVALIDAR PALAVRA
   if (!alfabeto.includes(char)) {
-    console.log("tecla válida", char);
-    return null;
+    return;
   }
 
-  // REMOVE LETRA
   if (char == "BACKSPACE") {
     if (!acerto) {
       entrada.pop();
       retiraLetra();
-      return;
-    } else return null
+      return null
+    }
   }
 
-  // VALIDAR PALAVRA
   if (char == "ENTER") {
     if (validarPalavra()) {
       let antigaEntrada = localStorage.getItem('entrada')
       if (antigaEntrada === null) antigaEntrada = "";
       localStorage.setItem('entrada', antigaEntrada + entrada.join(''))
-      validarEntrada();
+      localStorage.setItem('innceMomento', indice)
+      pintaLetras();
       if (!acerto) {
         linha += 1;
       }
     }
-    return;
+    return null
   }
 
   if (entrada.length >= 5) {
-    return null;
+    return;
   } else {
     entrada.push(char);
   }
   if (!acerto) {
     exibeLetra(char);
-
-
   }
 }
-
-// function salvo() {
-
-//   if (localStorageChar) {
-//     console.log("ta indo")
-//     for (var i in localStorageChar) {
-//       x = localStorageChar[i]
-//       exibeLetra(x)
-//     }
-//     return
-
-//   }
-// }
-
 
 const ouvinteDeTeclas = (event) => {
   trataTecla(event.key)
 };
 
 
-function exibeLetra(letra) {
+const exibeLetra = (letra) => {
   let elId = `l${linha}c${entrada.length}`;
   const el = document.getElementById(elId);
   el.textContent = letra;
 
 }
 
-function retiraLetra() {
+const retiraLetra = () => {
   let elId = `l${linha}c${entrada.length + 1}`;
   const el = document.getElementById(elId);
   el.textContent = "";
 }
 
-function validarPalavra() {
+const validarPalavra = () => {
   if (entrada.length == 5) {
     for (var i of palavrasValidas) {
       if (i == entrada.join("").toLowerCase()) {
         return true
-        break
       }
     }
   } if (!acerto) setTimeout(function () {
@@ -143,7 +123,7 @@ function validarPalavra() {
 }
 
 
-function validarEntrada() {
+const pintaLetras = () => {
 
   for (var i = 1; i <= 5; i++) {
     let elId = `l${linha}c${i}`;
@@ -153,16 +133,17 @@ function validarEntrada() {
       teclaPinta.classList.add("fullcorrect")
       el.classList.add("fullcorrect")
     }
-    if (palavraDoDia.includes(el.textContent)) {
-      teclaPinta = document.getElementById(el.textContent)
-      teclaPinta.classList.add("correct")
-      el.classList.add("correct")
-    }
-    else {
-      teclaPinta = document.getElementById(el.textContent)
-      teclaPinta.classList.add("incorrect")
-      el.classList.add("incorrect")
-    }
+    else
+      if (palavraDoDia.includes(el.textContent)) {
+        teclaPinta = document.getElementById(el.textContent)
+        teclaPinta.classList.add("correct")
+        el.classList.add("correct")
+      }
+      else {
+        teclaPinta = document.getElementById(el.textContent)
+        teclaPinta.classList.add("incorrect")
+        el.classList.add("incorrect")
+      }
   }
 
 
@@ -193,9 +174,11 @@ function validarEntrada() {
   //apagar itens da entrada
   let jaEscrito = entrada.slice(entrada.length);
 }
-console.log("validar se " + entrada.join("") + " é igual " + palavraDoDia);
+
+
 
 function exibeLocalStorage() {
+  indiceHoje = indice
   var salvo = localStorage.getItem('entrada')
   localStorage.removeItem('entrada')
   let counter = 0
@@ -209,23 +192,30 @@ function exibeLocalStorage() {
   }
 
 }
+var indiceHoje = localStorage.getItem('innceMomento')
+
+if (indiceHoje != indice) {
+  localStorage.removeItem('entrada');
+  localStorage.removeItem('innceMomento')
+}
 
 //ouve quando o cliente aperta uma tecla
 document.body.addEventListener("keydown", ouvinteDeTeclas);
 document.querySelectorAll(".tecla").forEach((el) => {
   el.addEventListener("click", function (el) {
-    let letra = el.srcElement.textContent
+    let letra = el.target.textContent
     if (letra == '⌫') {
-
       letra = "BACKSPACE"
     }
     trataTecla(letra)
-
   })
 })
-if (localStorage.getItem('entrada') !== null) {
-  exibeLocalStorage()
-}
+
+// if (localStorage.getItem('entrada') !== null) {
+exibeLocalStorage()
+
+
+// }
 
 
 
